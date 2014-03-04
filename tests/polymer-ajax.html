@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+
+  <title>polymer-ajax</title>
+
+  <script src="../../platform/platform.js"></script>
+  <link rel="import" href="tools/tools.html">
+  <script src="tools/htmltest.js"></script>
+
+  <link rel="import" href="../../polymer-ajax/polymer-ajax.html">
+
+</head>
+<body>
+
+  <polymer-ajax 
+    url="http://gdata.youtube.com/feeds/api/videos/"
+    params='{"alt":"json", "q":"chrome"}'
+    handleAs="json"
+    auto
+  ></polymer-ajax>
+
+  <script>
+
+    document.addEventListener('polymer-ready', function() {
+
+      var ajax = document.querySelector('polymer-ajax');
+
+      ajax.addEventListener("polymer-response", function(event) {
+
+        assert.isTrue(event.detail.response.feed.entry.length > 0);
+        done();
+
+      });
+
+    });
+
+  </script>
+
+</body>
+</html>

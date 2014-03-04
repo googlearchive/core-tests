@@ -1,0 +1,15 @@
+<link rel="import" href="tools/tools.html">
+
+<script src="tools/mocha-htmltest.js"></script>
+
+<script>
+
+  mocha.setup({ui: 'tdd', slow: 1000, htmlbase: ''});
+
+  htmlSuite('polymer-ajax', function() {
+    htmlTest('tests/polymer-ajax.html');
+  });
+
+  mocha.run();
+
+</script>
