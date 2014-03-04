@@ -10,6 +10,11 @@
     htmlTest('tests/core-ajax.html');
   });
 
+  htmlSuite('core-selection', function() {
+    htmlTest('tests/core-selection.html');
+    htmlTest('tests/core-selection-multi.html');
+  });
+
   mocha.run();
 
 </script>
