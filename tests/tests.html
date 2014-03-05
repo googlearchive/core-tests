@@ -15,6 +15,12 @@
     htmlTest('tests/core-selection-multi.html');
   });
 
+  htmlSuite('core-selector', function() {
+    htmlTest('tests/core-selector-basic.html');
+    htmlTest('tests/core-selector-activate-event.html');
+    htmlTest('tests/core-selector-multi.html');
+  });
+
   mocha.run();
 
 </script>
