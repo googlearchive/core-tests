@@ -1,4 +1,4 @@
 core-tests
 ==========
 
-Polymer Core Element Tests
+See //polymer.github.io/core-tests
