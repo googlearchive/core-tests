@@ -1,57 +1,67 @@
 <!doctype html>
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
 <html>
 <head>
-  <title>polymer-collapse</title>
-  <script src="../../../platform/platform.js"></script>
-  <script src="../../../tools/test/htmltest.js"></script>
-  <script src="../../../tools/test/chai/chai.js"></script>
-  <link rel="import" href="../../polymer-collapse.html">
+  <title>core-collapse</title>
+  
+  <script src="../../platform/platform.js"></script>
+  <link rel="import" href="tools/tools.html">
+  <script src="tools/htmltest.js"></script>
+  
+  <link rel="import" href="../../core-collapse/core-collapse.html">
 </head>
-<body>
+<body unresolved>
+
   <button onclick="document.querySelector('#collapse').toggle()">toggle collapse</button>
-  <div id="box">
+  
+  <core-collapse id="collapse" duration="0.1" opened>
+    <div>
     Forma temperiemque cornua sidera dissociata cornua recessit innabilis ligavit: solidumque coeptis nullus caelum sponte phoebe di regat mentisque tanta austro capacius amphitrite sui quin postquam semina fossae liquidum umor galeae coeptis caligine liberioris quin liquidum matutinis invasit posset: flexi glomeravit radiis certis invasit oppida postquam onerosior inclusum dominari opifex terris pace finxit quam aquae nunc sine altae auroram quam habentem homo totidemque scythiam in pondus ensis tegit caecoque poena lapidosos humanas coeperunt poena aetas totidem nec natura aethera locavit caelumque distinxit animalibus phoebe cingebant moderantum porrexerat terrae possedit sua sole diu summaque obliquis melioris orbem
-  </div>
-  <polymer-collapse id="collapse" targetId="box" duration="0.1"></polymer-collapse>
+    </div>
+  </core-collapse>
   
   <script>
-    var assert = chai.assert;
-    var delay = 200;
+    var delay = 500;
     document.addEventListener('polymer-ready', function() {
       var c = document.querySelector('#collapse');
-      assert.equal(c.closed, false);
-      Platform.flush();
+      // verify take attribute for opened is correct
+      assert.equal(c.opened, true);
       setTimeout(function() {
-        var origH = getBoxComputedHeight();
-        assert.notEqual(origH, 0);
-        c.closed = true;
+        // get the height for the opened state
+        var h = getCollapseComputedStyle().height;
+        // verify the height is not 0px
+        assert.notEqual(getCollapseComputedStyle().height, '0px');
+        // close it
+        c.opened = false;
         Platform.flush();
         setTimeout(function() {
-          // after closed, height is 0
-          assert.equal(getBoxComputedHeight(), 0);
-          // should be set to display: none
-          assert.equal(getBoxComputedStyle().display, 'none');
-          c.closed = false;
+          // verify is closed
+          assert.notEqual(getCollapseComputedStyle().height, h);
+          // open it
+          c.opened = true;
           Platform.flush();
           setTimeout(function() {
-            // verify computed height
-            assert.equal(getBoxComputedHeight(), origH);
-            // after opened, height is set to 'auto'
-            assert.equal(document.querySelector('#box').style.height, 'auto');
+            // verify is opened
+            assert.equal(getCollapseComputedStyle().height, h);
             done();
           }, delay);
         }, delay);
       }, delay);
     });
     
-    function getBoxComputedStyle() {
-      var b = document.querySelector('#box');
+    function getCollapseComputedStyle() {
+      var b = document.querySelector('#collapse');
       return getComputedStyle(b);
     }
     
-    function getBoxComputedHeight() {
-      return parseInt(getBoxComputedStyle().height);
-    }
   </script>
+
 </body>
 </html>

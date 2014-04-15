@@ -1,18 +1,27 @@
 <!doctype html>
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
 <html>
 <head>
-  <title>polymer-localstorage</title>
-  <script src="../../../platform/platform.js"></script>
-  <script src="../../../tools/test/htmltest.js"></script>
-  <script src="../../../tools/test/chai/chai.js"></script>
-  <link rel="import" href="../../polymer-localstorage.html">
+  <title>core-localstorage</title>
+  
+  <script src="../../platform/platform.js"></script>
+  <link rel="import" href="tools/tools.html">
+  <script src="tools/htmltest.js"></script>
+  
+  <link rel="import" href="../../core-localstorage/core-localstorage.html">
 </head>
 <body>
 
-  <polymer-localstorage id="localstorage" name="polymer-localstorage-test" useRaw></polymer-localstorage>
+  <core-localstorage id="localstorage" name="polymer-localstorage-test"></core-localstorage>
   
   <script>
-    var assert = chai.assert;
     document.addEventListener('polymer-ready', function() {
       var s = document.querySelector('#localstorage');
       var m = 'hello wold';
@@ -24,5 +33,6 @@
       done();
     });
   </script>
+  
 </body>
 </html>
