@@ -80,7 +80,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       // set selected
       s.selected = 'item5';
       Platform.flush();
-      oneMutation(s, {attributes: true}, function() {
+      setTimeout(function() {
         // check core-select event
         assert.equal(selectEventCounter, 1);
         // check selected class
@@ -97,7 +97,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           assert.equal(selectEventCounter, 0);
           done();
         }, 50);
-      });
+      }, 50);
     });
   </script>
 </body>
