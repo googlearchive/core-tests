@@ -36,6 +36,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     htmlTest('tests/core-selector-activate-event.html');
     htmlTest('tests/core-selector-multi.html');
   });
+  
+  htmlSuite('core-shared-lib', function() {
+    htmlTest('tests/core-shared-lib.html');
+  });
 
   mocha.run();
 
