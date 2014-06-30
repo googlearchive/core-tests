@@ -1,4 +1,4 @@
 core-tests
 ==========
 
-See //polymer-project.org/docs/elements/core-elements.html#core-tests
+Tests for polymer elements. The tooling is at https://github.com/polymer/polymer-test-tools
