@@ -1,0 +1,61 @@
+<!doctype html>
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<html>
+<head>
+  <title>core-icon</title>
+  
+  <script src="../../platform/platform.js"></script>
+  <link rel="import" href="../../polymer-test-tools/tools.html">
+  <script src="../../polymer-test-tools/htmltest.js"></script>
+  
+  <link rel="import" href="../../core-icon/core-icon.html">
+  <link rel="import" href="../../core-icons/core-icons.html">
+  <link rel="import" href="../../core-icons/av-icons.html">
+</head>
+<body unresolved>
+
+  <core-icon icon="android"></core-icon>
+  
+  <script>
+    document.addEventListener('polymer-ready', function() {
+      var icon = document.querySelector('core-icon');
+      icon.icon = 'content-cut';
+      icon.deliverChanges();
+
+      // If icon changes and alt is not present, it will set aria-label
+      // to match the new icon name
+      assert.isTrue(icon.hasAttribute('aria-label'));
+      assert.equal(icon.getAttribute('aria-label'), 'content-cut');
+      assert.isTrue(icon.hasAttribute('role'));
+      assert.equal(icon.getAttribute('role'), 'img');
+      // Setup next test
+      icon.icon = 'av:high-quality';
+      icon.deliverChanges();
+
+      // If an icon set is used and alt is not present, it will set
+      // aria-label to match the icon name and exclude the iconset name
+      assert.isTrue(icon.hasAttribute('aria-label'));
+      assert.equal(icon.getAttribute('aria-label'), 'high-quality');
+      // Setup next test
+      icon.setAttribute('alt', 'foo bar baz');
+      icon.icon = 'android';
+      icon.deliverChanges();
+
+      // If alt is set, and icon changes, the aria-label should match
+      // the value of alt
+      assert.isTrue(icon.hasAttribute('aria-label'));
+      assert.equal(icon.getAttribute('aria-label'), 'foo bar baz');
+      // Finish tests
+      done();
+    });
+  </script>
+
+</body>
+</html>

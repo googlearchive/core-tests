@@ -41,6 +41,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     htmlTest('tests/core-shared-lib.html');
   });
 
+  htmlSuite('core-icon', function() {
+    htmlTest('tests/core-icon-a11y-alt.html');
+    htmlTest('tests/core-icon-a11y-icon.html');
+    htmlTest('tests/core-icon-a11y-aria-label-present.html');
+    htmlTest('tests/core-icon-a11y-aria-label-missing.html');
+    htmlTest('tests/core-icon-a11y-aria-hidden.html');
+  });
+
   mocha.run();
 
 </script>
